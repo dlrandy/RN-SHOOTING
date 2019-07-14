@@ -11,17 +11,20 @@ import {
 } from "react-native";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { withNavigation } from 'react-navigation';
 
 import Stars from 'components/Star';
 import { getBaseUrl } from 'utils';
 
-export default class RestaurantRow extends Component {
+class RestaurantRow extends Component {
   state = {
     showInfo: false
   };
 
   infoPressed = () => {
-    this.setState({ showInfo: !this.state.showInfo });
+    this.props.navigation.navigate('Info', {
+      place: this.props.place
+    });
   };
 
   render() {
@@ -52,24 +55,6 @@ export default class RestaurantRow extends Component {
             </TouchableHighlight>
           </View>
         </View>
-
-        {this.state.showInfo && (
-          <View style={styles.info}>
-            <Text>Restaurant Info</Text>
-            <Image
-              source={{
-                uri: `${getBaseUrl()}/images/${place.image}`,
-                width: 100,
-                height: 100
-              }}
-              style={{
-                flex: 1,
-                height: 100
-              }}
-              resizeMode="contain"
-            />
-          </View>
-        )}
       </View>
     );
   }
@@ -124,3 +109,4 @@ const styles = StyleSheet.create({
     borderRadius: 4
   }
 });
+export default withNavigation(RestaurantRow);

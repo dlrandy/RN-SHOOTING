@@ -4,8 +4,8 @@ module.exports = {
     ["module-resolver", {
       "root": ["./src"],
       "alias": {
-        "test": "./test",
-        "underscore": "lodash"
+        "@components": "./src/components",
+        "@videos": "./src/videos",
       }
     }]
   ]
